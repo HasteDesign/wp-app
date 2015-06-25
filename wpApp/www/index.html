@@ -19,19 +19,23 @@
     <script src="js/app.js"></script>
 	<script src="js/controller.js"></script>
   </head>
-  <body ng-app="starter">
+  <body ng-app="starter" ng-controller="DashCtrl">
 
-    <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">WP App</h1>
-      </ion-header-bar>
-      <ion-content class="padding">
-    	  <div ng-controller="DashCtrl">
-    		<div>
-    			<h1>{{title}}</h1>
-    		</div>
-    		<div ng-repeat="post in posts">
-    			<p>{{post.title}}</p>
+    <ion-pane >
+      <div class="bar bar-header bar-positive">
+        <h1 class="title">WP APP</h1>
+      </div>
+      <div class="bar bar-subheader bar-calm">
+        <h2 class="title">{{title}}</h2>
+      </div>
+      <ion-content class="has-subheader">
+    	  <div class="list">
+    		<div class="item item-checkbox" ng-repeat="post in posts">
+         <label class="checkbox">
+           <input type="checkbox">
+         </label>
+         <h2>{{post.title}}</h2>
+         <p>{{post.content}}</p>
     		</div>
     	  </div>
       </ion-content>
