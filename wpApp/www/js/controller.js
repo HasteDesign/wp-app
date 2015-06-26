@@ -4,4 +4,16 @@ wpApp.controller('DashCtrl', function($scope, $http) {
 		$scope.title = 'Palestras WordCamp São Paulo 2015';
 		$scope.posts = data;
 	})
+
+	$scope.togglePost = function(post) {
+	if ($scope.isPostShown(post)) {
+		$scope.shownpost = null;
+	} else {
+		$scope.shownpost = post;
+	}
+};
+$scope.isPostShown = function(post) {
+	return $scope.shownpost === post;
+};
+
 })

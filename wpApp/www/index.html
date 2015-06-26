@@ -22,21 +22,34 @@
   <body ng-app="starter" ng-controller="DashCtrl">
 
     <ion-pane >
-      <div class="bar bar-header bar-positive">
+      <div class="bar bar-header bar-dark">
         <h1 class="title">WP APP</h1>
       </div>
-      <div class="bar bar-subheader bar-calm">
-        <h2 class="title">{{title}}</h2>
+      <div class="bar bar-subheader bar-assertive">
+        <p class="title">{{title}}</p>
       </div>
       <ion-content class="has-subheader">
-    	  <div class="list">
-    		<div class="item item-checkbox" ng-repeat="post in posts">
-         <label class="checkbox">
-           <input type="checkbox">
-         </label>
-         <h2>{{post.title}}</h2>
-         <p>{{post.content}}</p>
-    		</div>
+    	  <div class="list card " ng-repeat="post in posts">
+      		<div class="item item-button-right item-stable"
+          ng-click="togglePost(post)"
+          ng-class="{active: isPostShown(post)}">
+
+             <h2>{{post.title}}</h2>
+
+             <button class="button button-clear button-small">
+               <i class="icon" ng-class="isPostShown(post) ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
+             </button>
+      		</div>
+          <div class="item item-accordion item-vatar" ng-show="isPostShown(post)">
+            <span class="subdued">{{post.author.name}}</span>
+            <p>Info da palestra</p>
+          </div>
+          <div class="item item-content item-checkbox">
+            <label class="checkbox checkbox-balanced">
+              <input type="checkbox">
+            </label>
+            12:00
+          </div>
     	  </div>
       </ion-content>
     </ion-pane>

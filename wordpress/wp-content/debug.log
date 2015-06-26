@@ -1,0 +1,4 @@
+[25-Jun-2015 20:50:12 UTC] PHP Parse error:  syntax error, unexpected 'array' (T_ARRAY), expecting ')' in C:\web\side\wpapp\wordpress\wp-content\themes\wpapp\functions.php on line 352
+[25-Jun-2015 20:50:14 UTC] PHP Parse error:  syntax error, unexpected 'array' (T_ARRAY), expecting ')' in C:\web\side\wpapp\wordpress\wp-content\themes\wpapp\functions.php on line 352
+[25-Jun-2015 20:50:16 UTC] PHP Parse error:  syntax error, unexpected 'array' (T_ARRAY), expecting ')' in C:\web\side\wpapp\wordpress\wp-content\themes\wpapp\functions.php on line 352
+[25-Jun-2015 20:57:00 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\web\side\wpapp\wordpress\wp-admin\includes\class-wp-list-table.php on line 11

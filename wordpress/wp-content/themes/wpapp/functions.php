@@ -309,6 +309,11 @@ if ( is_woocommerce_activated() ) {
 	require get_template_directory() . '/inc/woocommerce/template-tags.php';
 }
 
+/*
+ * WP APP Functions
+ */
+
+// Registra o post type "palestras"
 function wpapp_post_types() {
 	$palestras = new Odin_Post_Type(
 		'Palestra', // Nome (Singular) do Post Type.
@@ -317,3 +322,45 @@ function wpapp_post_types() {
 }
 
 add_action( 'init', 'wpapp_post_types', 1 );
+
+// Cria os metabox e metafields do post type "palestras"
+require_once get_template_directory() . '/core/classes/class-metabox.php';
+
+$dadosdapalestra_metabox = new Odin_Metabox(
+    'dadospalestra', // Slug/ID do Metabox (obrigatório)
+    'Dados da palestra', // Nome do Metabox  (obrigatório)
+    'palestra', // Slug do Post Type, sendo possível enviar apenas um valor ou um array com vários (opcional)
+    'normal', // Contexto (opções: normal, advanced, ou side) (opcional)
+    'high' // Prioridade (opções: high, core, default ou low) (opcional)
+);
+
+$dadosdapalestra_metabox->set_fields(
+    array(
+			array(
+				'id'          => 'data_palestra', // Obrigatório
+				'label'       => __( 'Data da palestra', 'odin' ), // Obrigatório
+				'type'        => 'input', // Obrigatório
+				//'default'     => 'Default text', // Opcional
+				'description' => __( 'Descrition Example', 'odin' ), // Opcional
+				'attributes'  => array( // Opcional (atributos para input HTML/HTML5)
+						'type'     => 'date',
+						'required' => 'required',
+						'class'    => 'regular-text',
+						'styles'   => 'background: #444;'
+				)
+			),
+			array(
+				'id'          => 'horario_palestra', // Obrigatório
+				'label'       => __( 'Horário da palestra', 'odin' ), // Obrigatório
+				'type'        => 'input', // Obrigatório
+				//'default'     => 'Default text', // Opcional
+				'description' => __( 'Descrition Example', 'odin' ), // Opcional
+				'attributes'  => array( // Opcional (atributos para input HTML/HTML5)
+						'type'     => 'time',
+						'required' => 'required',
+						'class'    => 'regular-text',
+						'styles'   => 'background: #444;'
+				)
+			)
+    )
+);
