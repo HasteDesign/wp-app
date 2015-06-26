@@ -6,14 +6,20 @@ wpApp.controller('DashCtrl', function($scope, $http) {
 	})
 
 	$scope.togglePost = function(post) {
-	if ($scope.isPostShown(post)) {
-		$scope.shownpost = null;
-	} else {
-		$scope.shownpost = post;
-	}
-};
-$scope.isPostShown = function(post) {
-	return $scope.shownpost === post;
-};
+		if ($scope.isPostShown(post)) {
+			$scope.shownpost = null;
+		} else {
+			$scope.shownpost = post;
+		}
+	};
 
-})
+	$scope.isPostShown = function(post) {
+		return $scope.shownpost === post;
+	};
+});
+
+wpApp.filter('htmlToPlaintext', function() {
+		return function(text) {
+			return String(text).replace(/<[^>]+>/gm, '');
+		}
+});

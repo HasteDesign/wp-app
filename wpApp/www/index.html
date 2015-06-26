@@ -42,7 +42,7 @@
       		</div>
           <div class="item item-accordion item-content" ng-show="isPostShown(post)">
             <p>{{post.author.name}}</p>
-            <p>Info da palestra</p>
+            <p>{{post.content | htmlToPlaintext}}</p>
           </div>
           <div class="item item-content item-checkbox">
             <label class="checkbox checkbox-balanced">
