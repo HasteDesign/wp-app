@@ -40,8 +40,8 @@
                <i class="icon" ng-class="isPostShown(post) ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
              </button>
       		</div>
-          <div class="item item-accordion item-vatar" ng-show="isPostShown(post)">
-            <span class="subdued">{{post.author.name}}</span>
+          <div class="item item-accordion item-content" ng-show="isPostShown(post)">
+            <p>{{post.author.name}}</p>
             <p>Info da palestra</p>
           </div>
           <div class="item item-content item-checkbox">
