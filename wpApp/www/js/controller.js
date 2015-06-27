@@ -1,5 +1,5 @@
 wpApp.controller('DashCtrl', function($scope, $http) {
-	$http.get('https://saopaulo.wordcamp.org/2014/wp-json/posts?type=wcb_session&filter[posts_per_page]=-1/')
+	$http.get('http://127.0.0.1/Workspace/side/wpapp/wordpress/wp-json/posts?type=palestra&filter[posts_per_page]=-1')
 	.success( function(data) {
 		$scope.title = 'Palestras WordCamp São Paulo 2015';
 		$scope.posts = data;
@@ -21,14 +21,5 @@ wpApp.controller('DashCtrl', function($scope, $http) {
 wpApp.filter('htmlToPlaintext', function() {
 		return function(text) {
 			return String(text).replace(/<[^>]+>/gm, '');
-		}
-});
-
-
-wpApp.filter('formatDate', function() {
-		return function(text) {
-			var date = new Date(text);
-			var options = { year: 'numeric', month: 'numeric', day: 'numeric' };
-			return date.toLocaleDateString('pt-BR', options);
 		}
 });
