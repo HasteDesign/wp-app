@@ -23,3 +23,12 @@ wpApp.filter('htmlToPlaintext', function() {
 			return String(text).replace(/<[^>]+>/gm, '');
 		}
 });
+
+
+wpApp.filter('formatDate', function() {
+		return function(text) {
+			var date = new Date(text);
+			var options = { year: 'numeric', month: 'long', day: 'numeric' };
+			return date.toLocaleDateString('pt-BR', options);
+		}
+});

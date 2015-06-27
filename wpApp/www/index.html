@@ -43,7 +43,7 @@
           <div class="item item-accordion item-content" ng-show="isPostShown(post)">
             <p>{{post.author.name}}</p>
             <p>{{post.content | htmlToPlaintext}}</p>
-            <p>{{post.post_meta.data}}</p>
+            <p>{{post.post_meta.data | formatDate}}</p>
           </div>
           <div class="item item-content item-checkbox">
             <label class="checkbox checkbox-balanced">
