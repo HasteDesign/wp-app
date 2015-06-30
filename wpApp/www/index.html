@@ -36,21 +36,29 @@
 
              <h2>{{post.title}}</h2>
 
-             <button class="button button-clear button-small">
-               <i class="icon" ng-class="isPostShown(post) ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
-             </button>
-      		</div>
-          <div class="item item-accordion item-content" ng-show="isPostShown(post)">
-            <p>{{post.author.name}}</p>
-            <p>{{post.content | htmlToPlaintext}}</p>
-            <p>{{post.post_meta.data | formatDate}}</p>
-          </div>
-          <div class="item item-content item-checkbox">
-            <label class="checkbox checkbox-balanced">
-              <input type="checkbox">
-            </label>
-            <p>{{post.post_meta[0]["value"] | formatDate}}</p>
-          </div>
+            <button class="button button-clear button-small">
+                <i class="icon" ng-class="isPostShown(post) ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
+                </button>
+            </div>
+
+              <div class="item item-avatar" ng-show="isPostShown(post)">
+                  <img ng-src="{{post.author.avatar}}">
+                  <h2>{{post.speaker.title}}</h2>
+                  <p><a href="{{post.author.URL}}">{{post.author.URL}}<a></p>
+              </div>
+
+              <div class="item item-accordion item-content" ng-show="isPostShown(post)">
+                <p>{{post.author.name}}</p>
+                <p>{{post.content | htmlToPlaintext}}</p>
+              </div>
+
+              <div class="item item-content item-checkbox">
+                <label class="checkbox checkbox-balanced">
+                  <input type="checkbox">
+                </label>
+                <p class="row"><i class="icon ion-clock padding-horizontal"></i>{{post.post_meta[0]["value"] | formatHour}}<i class="icon ion-calendar padding-horizontal"></i>{{post.post_meta[0]["value"] | formatDate}}</p>
+              </div>
+
     	  </div>
       </ion-content>
     </ion-pane>

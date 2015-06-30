@@ -25,12 +25,26 @@ wpApp.filter('htmlToPlaintext', function() {
 });
 
 
-wpApp.filter('formatDate', function() {
+wpApp.filter('formatHour', function() {
 		return function(meta) {
 			if( meta !== undefined ) {
 				var date = new Date( meta * 1000 );
 				var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+				//return date.toLocaleDateString('pt-BR', options);
+				return date.getUTCHours() + 'h' + date.getUTCMinutes();
+				//return date.toLocaleTimeString('pt-BR', { hour12: false });
+			}
+		}
+});
+
+wpApp.filter('formatDate', function() {
+		return function(meta) {
+			if( meta !== undefined ) {
+				var date = new Date( meta * 1000 );
+				var options = { year: 'numeric', month: 'numeric', day: 'numeric' };
 				return date.toLocaleDateString('pt-BR', options);
+				//return date.getUTCHours() + 'h' + date.getUTCMinutes();
+				//return date.toLocaleTimeString('pt-BR', { hour12: false });
 			}
 		}
 });
