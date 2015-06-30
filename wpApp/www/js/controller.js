@@ -26,9 +26,11 @@ wpApp.filter('htmlToPlaintext', function() {
 
 
 wpApp.filter('formatDate', function() {
-		return function(text) {
-			var date = new Date(text);
-			var options = { year: 'numeric', month: 'numeric', day: 'numeric' };
-			return date.toLocaleDateString('pt-BR', options);
+		return function(meta) {
+			if( meta !== undefined ) {
+				var date = new Date( meta * 1000 );
+				var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+				return date.toLocaleDateString('pt-BR', options);
+			}
 		}
 });
