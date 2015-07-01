@@ -7682,13 +7682,11 @@ body {
  * http://docs.angularjs.org/api/ng/directive/ngShow#usage_animations
  */
 .list .item.item-accordion {
-  line-height: 38px;
-  padding-top: 0;
-  padding-bottom: 0;
   transition: 0.09s all linear; }
-
-.list .item.item-accordion.ng-hide {
-  line-height: 0px; }
-
-.list .item.item-accordion.ng-hide-add, .list .item.item-accordion.ng-hide-remove {
-  display: block !important; }
+  .list .item.item-accordion.ng-hide {
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 0px;
+    transition: 0.09s all linear; }
+    .list .item.item-accordion.ng-hide-add, .list .item.item-accordion.ng-hide-remove {
+      display: block !important; }
