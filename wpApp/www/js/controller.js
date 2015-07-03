@@ -20,23 +20,25 @@ wpApp.controller('DashCtrl', function($scope, $http) {
 	};
 
 	$scope.sessionClass = function(post) {
+		var classes = '';
 		var active = $scope.isPostShown(post);
-		active ? active = 'active ' : active = '';
+		active ? classes = 'active ' : null ;
+		classes += $scope.trackClasses(post) + ' ';
 
 		switch(post.title) {
-			case 'Credenciamento' : return active + 'credenciamento';
+			case 'Credenciamento' : return classes + 'credenciamento';
 			break;
-			case 'Abertura' : return active + 'abertura';
+			case 'Abertura' : return classes + 'abertura';
 			break
-			case 'Almoço' : return active + 'almoco';
+			case 'Almoço' : return classes + 'almoco';
 			break;
-			case 'Coffee Break' : return active +'coffee';
+			case 'Coffee Break' : return classes +'coffee';
 			break;
-			case 'Encerramento' : return active + 'encerramento'
+			case 'Encerramento' : return classes + 'encerramento'
 			break;
-			case 'WordCana' : return active + 'wordcana'
+			case 'WordCana' : return classes + 'wordcana'
 			break;
-			default : return '';
+			default : return classes;
 			break;
 		}
 	};
@@ -63,6 +65,16 @@ wpApp.controller('DashCtrl', function($scope, $http) {
 
 		if( returnValue == 'local' ) { return local; };
 		if( returnValue == 'trilha' ) { return trilha; };
+	}
+
+	$scope.trackClasses = function(post) {
+		var classes = '';
+
+		for( var i = 0; i < post.terms.wcb_track.length; i++  ) {
+			classes +=  ' ' + post.terms.wcb_track[i].slug;
+		}
+
+		return classes;
 	}
 });
 
