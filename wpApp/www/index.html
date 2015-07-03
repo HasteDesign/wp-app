@@ -32,7 +32,13 @@
     	  <div class="list card " ng-repeat="post in posts | orderBy:'post_meta[0].value'">
       		<div class="item item-button-right item-stable item-text-wrap"
           ng-click="togglePost(post)"
-          ng-class="{active: isPostShown(post)}">
+          ng-class="{active: isPostShown(post),
+                    credenciamento: post.title == 'Credenciamento',
+                    abertura: post.title == 'Abertura',
+                    almoco:   post.title == 'Almoço',
+                    coffee:   post.title == 'Coffee Break',
+                    encerramento: post.title == 'Encerramento',
+                    wordcana: post.title == 'WordCana'}">
 
            <h2>{{post.title}}</h2>
 
