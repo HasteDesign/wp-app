@@ -6,15 +6,47 @@ wpApp.controller('DashCtrl', function($scope, $http) {
 	})
 
 	$scope.togglePost = function(post) {
-		if ($scope.isPostShown(post)) {
-			$scope.shownpost = null;
-		} else {
-			$scope.shownpost = post;
+		if( $scope.isRegularSession(post) ) {
+			if ($scope.isPostShown(post)) {
+				$scope.shownpost = null;
+			} else {
+				$scope.shownpost = post;
+			}
 		}
 	};
 
 	$scope.isPostShown = function(post) {
 		return $scope.shownpost === post;
+	};
+
+	$scope.sessionClass = function(post) {
+		var active = $scope.isPostShown(post);
+		active ? active = 'active ' : active = '';
+
+		switch(post.title) {
+			case 'Credenciamento' : return active + 'credenciamento';
+			break;
+			case 'Abertura' : return active + 'abertura';
+			break
+			case 'Almoço' : return active + 'almoco';
+			break;
+			case 'Coffee Break' : return active +'coffee';
+			break;
+			case 'Encerramento' : return active + 'encerramento'
+			break;
+			case 'WordCana' : return active + 'wordcana'
+			break;
+			default : return '';
+			break;
+		}
+	};
+
+	$scope.isRegularSession = function(post) {
+		if( post.post_meta[1]["value"] === 'session' ) {
+			return true;
+		} else {
+			return false;
+		}
 	};
 });
 
