@@ -48,6 +48,22 @@ wpApp.controller('DashCtrl', function($scope, $http) {
 			return false;
 		}
 	};
+
+	$scope.showTrack = function(post, returnValue) {
+		var local = '';
+		var trilha= '';
+
+		for( var i = 0; i < post.terms.wcb_track.length; i++  ) {
+			if( post.terms.wcb_track[i].slug == 'auditorio' || post.terms.wcb_track[i].slug == 'mini-auditorio') {
+				local = post.terms.wcb_track[i].name;
+			} else {
+				trilha = post.terms.wcb_track[i].name;
+			}
+		}
+
+		if( returnValue == 'local' ) { return local; };
+		if( returnValue == 'trilha' ) { return trilha; };
+	}
 });
 
 wpApp.filter('htmlToPlaintext', function() {

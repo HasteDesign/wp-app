@@ -58,6 +58,7 @@
                   <input type="checkbox">
                 </label>
                 <p class="row"><i class="icon ion-clock padding-horizontal"></i>{{post.post_meta[0]["value"] | formatHour}}<i class="icon ion-calendar padding-horizontal"></i>{{post.post_meta[0]["value"] | formatDate}}</p>
+                <p ng-if="isRegularSession(post)">{{showTrack(post, 'local')}} | {{showTrack(post, 'trilha')}}</p>
               </div>
 
     	  </div>
