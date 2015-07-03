@@ -57,8 +57,8 @@
                 <label class="checkbox checkbox-balanced">
                   <input type="checkbox">
                 </label>
-                <p class="row"><i class="icon ion-clock padding-horizontal"></i>{{post.post_meta[0]["value"] | formatHour}}<i class="icon ion-calendar padding-horizontal"></i>{{post.post_meta[0]["value"] | formatDate}}</p>
-                <p ng-if="isRegularSession(post)">{{showTrack(post, 'local')}} | {{showTrack(post, 'trilha')}}</p>
+                <p class="row"><i class="icon ion-clock padding-horizontal"></i>{{post.post_meta[0]["value"] | formatHour}}<i class="icon ion-calendar padding-horizontal"></i>{{post.post_meta[0]["value"] | formatDate}}
+                <span ng-if="isRegularSession(post)"><i class="icon ion-map padding-horizontal"></i>{{showTrack(post, 'local')}} <i class="icon ion-pound padding-horizontal"></i>{{showTrack(post, 'trilha')}}</span></p>
               </div>
 
     	  </div>
