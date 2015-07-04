@@ -50,6 +50,10 @@
                   <p><a href="{{post.author.URL}}">{{post.author.URL}}</a></p>
               </div>
 
+              <div ng-if="isRegularSession(post)" class="item item-accordion  item-content" ng-show="isPostShown(post)">
+                <p><i class="icon ion-map padding-right"></i>{{showTrack(post, 'local')}} <i class="icon ion-pound padding-horizontal"></i>{{showTrack(post, 'trilha')}}</p>
+              </div>
+
               <div class="item item-accordion item-text-wrap item-content" ng-show="isPostShown(post)">
                 <p>{{post.content | htmlToPlaintext}}</p>
               </div>
@@ -58,8 +62,8 @@
                 <label class="checkbox checkbox-balanced">
                   <input type="checkbox">
                 </label>
-                <p class="row"><i class="icon ion-clock padding-horizontal"></i>{{post.post_meta[0]["value"] | formatHour}}<i class="icon ion-calendar padding-horizontal"></i>{{post.post_meta[0]["value"] | formatDate}}
-                <span ng-if="isRegularSession(post)"><i class="icon ion-map padding-horizontal"></i>{{showTrack(post, 'local')}} <i class="icon ion-pound padding-horizontal"></i>{{showTrack(post, 'trilha')}}</span></p>
+                <p class="row"><i class="icon ion-clock padding-right"></i>{{post.post_meta[0]["value"] | formatHour}}<i class="icon ion-calendar padding-horizontal"></i>{{post.post_meta[0]["value"] | formatDate}}
+                </p>
               </div>
 
     	  </div>
