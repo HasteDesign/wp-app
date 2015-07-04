@@ -79,6 +79,23 @@ wpApp.controller('DashCtrl', function($scope, $http) {
 
 		return classes;
 	}
+
+	$scope.scheduleSession = function(post) {
+		cordova.plugins.notification.local.isPresent(post.ID, function (present) {
+			if( present ) {
+				cordova.plugins.notification.local.cancel(post.ID, function() {
+				});
+			} else {
+				cordova.plugins.notification.local.schedule({
+					id: post.ID,
+					title: post.title,
+					text: "Irá acontecer agora a palestra: " + post.title + " - com " + post.author.name,
+					at: new Date( "July 04, 2015 00:28:00" )
+				});
+				return;
+			}
+		});
+	}
 });
 
 wpApp.filter('htmlToPlaintext', function() {
