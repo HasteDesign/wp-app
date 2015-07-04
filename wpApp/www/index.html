@@ -43,14 +43,14 @@
            </button>
           </div>
 
-              <div class="item item-accordion item-avatar item-divider" ng-show="isPostShown(post)"
+              <div class="item item-accordion item-avatar item-stable" ng-show="isPostShown(post)"
                   ng-if="isRegularSession(post)">
                   <img ng-src="{{post.author.avatar}}">
                   <h2>{{post.speaker.title}}</h2>
                   <p><a href="{{post.author.URL}}">{{post.author.URL}}</a></p>
               </div>
 
-              <div ng-if="isRegularSession(post)" class="item item-accordion  item-content" ng-show="isPostShown(post)">
+              <div class="item item-accordion  item-content" ng-show="isPostShown(post)">
                 <p><i class="icon ion-map padding-right"></i>{{showTrack(post, 'local')}} <i class="icon ion-pound padding-horizontal"></i>{{showTrack(post, 'trilha')}}</p>
               </div>
 
@@ -58,7 +58,7 @@
                 <p>{{post.content | htmlToPlaintext}}</p>
               </div>
 
-              <div class="item item-checkbox">
+              <div class="item item-checkbox" ng-class="sessionClass(post)">
                 <label class="checkbox checkbox-balanced">
                   <input type="checkbox">
                 </label>

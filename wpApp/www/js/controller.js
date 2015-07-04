@@ -25,7 +25,7 @@ wpApp.controller('DashCtrl', function($scope, $http) {
 		active ? classes = 'active ' : null ;
 		classes += $scope.trackClasses(post) + ' ';
 
-		var breakClasses = 'item-balanced';
+		var breakClasses = 'item-energized';
 		var procedureClasses = 'item-calm';
 
 		switch(post.title) {
