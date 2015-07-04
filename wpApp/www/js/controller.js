@@ -25,20 +25,23 @@ wpApp.controller('DashCtrl', function($scope, $http) {
 		active ? classes = 'active ' : null ;
 		classes += $scope.trackClasses(post) + ' ';
 
+		var breakClasses = 'item-energized';
+		var procedureClasses = 'item-calm';
+
 		switch(post.title) {
-			case 'Credenciamento' : return classes + 'credenciamento';
+			case 'Credenciamento' : return classes + procedureClasses;
 			break;
-			case 'Abertura' : return classes + 'abertura';
+			case 'Abertura' : return classes + procedureClasses;
 			break
-			case 'Almoço' : return classes + 'almoco';
+			case 'Almoço' : return classes + breakClasses;
 			break;
-			case 'Coffee Break' : return classes +'coffee';
+			case 'Coffee Break' : return classes + breakClasses;
 			break;
-			case 'Encerramento' : return classes + 'encerramento'
+			case 'Encerramento' : return classes + procedureClasses;
 			break;
-			case 'WordCana' : return classes + 'wordcana'
+			case 'WordCana' : return classes + breakClasses;
 			break;
-			default : return classes;
+			default : return classes + 'item-stable';
 			break;
 		}
 	};
