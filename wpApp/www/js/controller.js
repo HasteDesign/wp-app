@@ -76,6 +76,49 @@ wpApp.controller('DashCtrl', function($scope, $http) {
 
 		return classes;
 	}
+
+	$scope.scheduleSession = function(post) {
+		cordova.plugins.notification.local.isPresent(post.ID, function (present) {
+			if( present ) {
+				cordova.plugins.notification.local.cancel(post.ID, function() {
+				});
+			} else {
+				cordova.plugins.notification.local.schedule({
+					id: post.ID,
+					title: post.title,
+					text: "Irá acontecer agora a palestra: " + post.title + " - com " + post.author.name,
+					at: new Date( "July 03, 2015 23:54:00" )
+				});
+				return;
+			}
+		});
+
+		// var schedule = true;
+		//
+		// for( var i = 0; i < $scope.schedules.length; i++ ) {
+		// 	if( $scope.schedules[i] == post.id ) {
+		// 		alert("Notificação " + post.id + "já agendada! " + )
+		// 		array.splice(i, 1);
+		// 		cordova.plugins.notification.local.cancel(post.id, function() {
+		// 			alert("Notificação " + post.id + " cancelada!");
+		// 			return;
+		// 		});
+		// 		schedule = false;
+		// 	}
+		// }
+		//
+		// if( schedule == true ) {
+		// 	$scope.schedules.push( post.id );
+		//
+		// 	cordova.plugins.notification.local.schedule({
+		// 		id: post.id,
+		// 		title: post.title,
+		// 		text: "Irá acontecer agora a palestra: " + post.title + " - com " + post.author.name,
+		// 		at: new Date( "July 03, 2015 23:03:00" )
+		// 	});
+		// 	return;
+		// }
+	}
 });
 
 wpApp.filter('htmlToPlaintext', function() {
