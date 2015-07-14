@@ -1,72 +1,70 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>WordCampMe</title>
+        <!-- compiled css output -->
+        <link href="css/ionic.app.css" rel="stylesheet">
 
+        <!-- ionic/angularjs js -->
+        <script src="lib/ionic/js/ionic.bundle.js"></script>
 
-    <!-- compiled css output -->
-    <link href="css/ionic.app.css" rel="stylesheet">
+        <!-- cordova script (this will be a 404 during development) -->
+        <script src="cordova.js"></script>
 
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
+        <!-- your app's js -->
+        <script src="js/app.js"></script>
+        <script src="js/controller.js"></script>
+    </head>
 
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
+    <body ng-app="starter" ng-controller="DashCtrl">
 
-    <!-- your app's js -->
-    <script src="js/app.js"></script>
-	<script src="js/controller.js"></script>
-  </head>
-  <body ng-app="starter" ng-controller="DashCtrl">
+        <ion-pane>
+            <div class="bar bar-header bar-dark">
+                <h1 class="title">WordCampMe</h1>
+            </div>
+            <div class="bar bar-subheader bar-assertive">
+                <p class="title">{{title}}</p>
+            </div>
+            <ion-content class="has-subheader">
+                <div class="list card " ng-repeat="post in posts | orderBy:'post_meta[0].value'">
+                    <div class="item item-button-right item-text-wrap"
+                ng-click="togglePost(post)"
+                ng-class="sessionClass(post)">
 
-    <ion-pane>
-      <div class="bar bar-header bar-dark">
-        <h1 class="title">WP APP</h1>
-      </div>
-      <div class="bar bar-subheader bar-assertive">
-        <p class="title">{{title}}</p>
-      </div>
-      <ion-content class="has-subheader">
-    	  <div class="list card " ng-repeat="post in posts | orderBy:'post_meta[0].value'">
-      		<div class="item item-button-right item-text-wrap"
-          ng-click="togglePost(post)"
-          ng-class="sessionClass(post)">
+                    <h2>{{post.title}}</h2>
 
-           <h2>{{post.title}}</h2>
+                    <button class="button button-clear button-small"
+                         ng-if="isRegularSession(post)">
+                         <i class="icon" ng-class="isPostShown(post) ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
+                    </button>
+                    </div>
 
-           <button class="button button-clear button-small"
-                   ng-if="isRegularSession(post)">
-             <i class="icon" ng-class="isPostShown(post) ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
-           </button>
-          </div>
+                    <div class="item item-accordion item-avatar item-stable" ng-show="isPostShown(post)"
+                        ng-if="isRegularSession(post)">
+                        <img ng-src="{{post.author.avatar}}">
+                        <h2>{{post.speaker.title}}</h2>
+                        <p><a href="{{post.author.URL}}">{{post.author.URL}}</a></p>
+                    </div>
 
-              <div class="item item-accordion item-avatar item-stable" ng-show="isPostShown(post)"
-                  ng-if="isRegularSession(post)">
-                  <img ng-src="{{post.author.avatar}}">
-                  <h2>{{post.speaker.title}}</h2>
-                  <p><a href="{{post.author.URL}}">{{post.author.URL}}</a></p>
-              </div>
+                    <div class="item item-accordion item-content" ng-show="isPostShown(post)">
+                        <p><i class="icon ion-map padding-right"></i>{{showTrack(post, 'local')}} <i class="icon ion-pound padding-horizontal"></i>{{showTrack(post, 'trilha')}}</p>
+                    </div>
 
-              <div class="item item-accordion item-content" ng-show="isPostShown(post)">
-                <p><i class="icon ion-map padding-right"></i>{{showTrack(post, 'local')}} <i class="icon ion-pound padding-horizontal"></i>{{showTrack(post, 'trilha')}}</p>
-              </div>
+                    <div class="item item-accordion item-text-wrap item-content" ng-show="isPostShown(post)">
+                        <p>{{post.content | htmlToPlaintext}}</p>
+                    </div>
 
-              <div class="item item-accordion item-text-wrap item-content" ng-show="isPostShown(post)">
-                <p>{{post.content | htmlToPlaintext}}</p>
-              </div>
-
-              <div class="item item-checkbox" ng-class="sessionClass(post)">
-                <label class="checkbox checkbox-balanced">
-                  <input type="checkbox" ng-click="scheduleSession(post)">
-                </label>
-                <p class="row"><i class="icon ion-clock padding-right"></i>{{post.post_meta[0]["value"] | formatHour}}<i class="icon ion-calendar padding-horizontal"></i>{{post.post_meta[0]["value"] | formatDate}}
-                </p>
-              </div>
-
-    	  </div>
-      </ion-content>
-    </ion-pane>
-  </body>
+                    <div class="item item-checkbox" ng-class="sessionClass(post)">
+                        <label class="checkbox checkbox-balanced">
+                            <input type="checkbox" ng-click="scheduleSession(post)">
+                        </label>
+                        <p class="row"><i class="icon ion-clock padding-right"></i>{{post.post_meta[0]["value"] | formatHour}}<i class="icon ion-calendar padding-horizontal"></i>{{post.post_meta[0]["value"] | formatDate}}
+                        </p>
+                    </div>
+                </div>
+            </ion-content>
+        </ion-pane>
+    </body>
 </html>
