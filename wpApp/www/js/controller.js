@@ -1,7 +1,7 @@
 wpApp.controller('DashCtrl', function($scope, $http) {
 	$http.get('https://saopaulo.wordcamp.org/2014/wp-json/posts?type=wcb_session&filter[posts_per_page]=-1/')
 	.success( function(data) {
-		$scope.title = 'Palestras WordCamp São Paulo 2015';
+		$scope.title = 'Palestras';
 		$scope.posts = data;
 	})
 
