@@ -1,6 +1,6 @@
 {
   "name": "wpApp",
-  "app_id": "",
+  "app_id": "fa24379c",
   "gulpStartupTasks": [
     "sass",
     "watch"

@@ -1,72 +1,92 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+	<title></title>
 
 
-    <!-- compiled css output -->
-    <link href="css/ionic.app.css" rel="stylesheet">
+	<!-- compiled css output -->
+	<link href="css/ionic.app.css" rel="stylesheet">
 
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
+	<!-- ionic/angularjs js -->
+	<script src="lib/ionic/js/ionic.bundle.js"></script>
 
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
+	<!-- cordova script (this will be a 404 during development) -->
+	<script src="cordova.js"></script>
 
-    <!-- your app's js -->
-    <script src="js/app.js"></script>
+	<!-- your app's js -->
+	<script src="js/app.js"></script>
 	<script src="js/controller.js"></script>
-  </head>
-  <body ng-app="starter" ng-controller="DashCtrl">
+</head>
+<body ng-app="starter" ng-controller="DashCtrl">
+	<div class="bar bar-header bar-dark">
+		<h1 class="title">WP APP</h1>
+	</div>
+	<ion-tabs class="tabs-positive tabs-icon-only">
+		<ion-tab title="Home" icon="ion-home" href="#/tab/home" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
+			<div class="bar bar-subheader bar-assertive">
+				<p class="title">{{title}}</p>
+			</div>
+			<ion-content class="has-subheader dark padding">
+				<div class="list card">
+					<div class="item item-avatar">
+						<img src="img/ionic.png">
+						<h2>Pretty Hate Machine</h2>
+						<p>Nine Inch Nails</p>
+					</div>
+					<div class="item item-image">
+						<img src="img/ionic.png">
+					</div>
+					<a class="item item-icon-left assertive" href="#">
+						<i class="icon ion-music-note"></i>
+						Start listening
+					</a>
+				</div>
+			</ion-content>
+		</ion-tab>
 
-    <ion-pane>
-      <div class="bar bar-header bar-dark">
-        <h1 class="title">WP APP</h1>
-      </div>
-      <div class="bar bar-subheader bar-assertive">
-        <p class="title">{{title}}</p>
-      </div>
-      <ion-content class="has-subheader">
-    	  <div class="list card " ng-repeat="post in posts | orderBy:'post_meta[0].value'">
-      		<div class="item item-button-right item-text-wrap"
-          ng-click="togglePost(post)"
-          ng-class="sessionClass(post)">
+		<ion-tab title="Programação" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+			<div class="bar bar-subheader bar-assertive">
+				<p class="title">{{title}}</p>
+			</div>
+			<ion-content class="has-subheader">
+				<div class="list card " ng-repeat="post in posts | orderBy:&apos;post_meta[0].value&apos;">
+					<div class="item item-button-right item-text-wrap" ng-click="togglePost(post)" ng-class="sessionClass(post)">
 
-           <h2>{{post.title}}</h2>
+						<h2>{{post.title}}</h2>
 
-           <button class="button button-clear button-small"
-                   ng-if="isRegularSession(post)">
-             <i class="icon" ng-class="isPostShown(post) ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
-           </button>
-          </div>
+						<button class="button button-clear button-small" ng-if="isRegularSession(post)">
+							<i class="icon" ng-class="isPostShown(post) ? &apos;ion-chevron-up&apos; : &apos;ion-chevron-down&apos;"></i>
+						</button>
+					</div>
 
-              <div class="item item-accordion item-avatar item-stable" ng-show="isPostShown(post)"
-                  ng-if="isRegularSession(post)">
-                  <img ng-src="{{post.author.avatar}}">
-                  <h2>{{post.speaker.title}}</h2>
-                  <p><a href="{{post.author.URL}}">{{post.author.URL}}</a></p>
-              </div>
+					<div class="item item-accordion item-avatar item-stable" ng-show="isPostShown(post)" ng-if="isRegularSession(post)">
+						<img ng-src="{{post.author.avatar}}">
+						<h2>{{post.speaker.title}}</h2>
+						<p><a href="{{post.author.URL}}">{{post.author.URL}}</a></p>
+					</div>
 
-              <div class="item item-accordion item-content" ng-show="isPostShown(post)">
-                <p><i class="icon ion-map padding-right"></i>{{showTrack(post, 'local')}} <i class="icon ion-pound padding-horizontal"></i>{{showTrack(post, 'trilha')}}</p>
-              </div>
+					<div class="item item-accordion item-content" ng-show="isPostShown(post)">
+						<p><i class="icon ion-map padding-right"></i>{{showTrack(post, &apos;local&apos;)}} <i class="icon ion-pound padding-horizontal"></i>{{showTrack(post, &apos;trilha&apos;)}}</p>
+					</div>
 
-              <div class="item item-accordion item-text-wrap item-content" ng-show="isPostShown(post)">
-                <p>{{post.content | htmlToPlaintext}}</p>
-              </div>
+					<div class="item item-accordion item-text-wrap item-content" ng-show="isPostShown(post)">
+						<p>{{post.content | htmlToPlaintext}}</p>
+					</div>
 
-              <div class="item item-checkbox" ng-class="sessionClass(post)">
-                <label class="checkbox checkbox-balanced">
-                  <input type="checkbox" ng-click="scheduleSession(post)">
-                </label>
-                <p class="row"><i class="icon ion-clock padding-right"></i>{{post.post_meta[0]["value"] | formatHour}}<i class="icon ion-calendar padding-horizontal"></i>{{post.post_meta[0]["value"] | formatDate}}
-                </p>
-              </div>
+					<div class="item item-checkbox" ng-class="sessionClass(post)">
+						<label class="checkbox checkbox-balanced">
+							<input type="checkbox" ng-click="scheduleSession(post)">
+						</label>
+						<p class="row"><i class="icon ion-clock padding-right"></i>{{post.post_meta[0][&quot;value&quot;] | formatHour}}<i class="icon ion-calendar padding-horizontal"></i>{{post.post_meta[0][&quot;value&quot;] | formatDate}}
+						</p>
+					</div>
 
-    	  </div>
-      </ion-content>
-    </ion-pane>
-  </body>
+				</div>
+			</ion-content>
+		</ion-tab>
+
+	</ion-tabs>
+</body>
 </html>
