@@ -25,8 +25,8 @@ wpApp.controller('DashCtrl', function($scope, $http) {
 		active ? classes = 'active ' : null ;
 		classes += $scope.trackClasses(post) + ' ';
 
-		var breakClasses = 'item-energized';
-		var procedureClasses = 'item-calm';
+		var breakClasses = 'item-dark';
+		var procedureClasses = 'item-dark';
 
 		switch(post.title) {
 			case 'Credenciamento' : return classes + procedureClasses;
@@ -41,7 +41,7 @@ wpApp.controller('DashCtrl', function($scope, $http) {
 			break;
 			case 'WordCana' : return classes + breakClasses;
 			break;
-			default : return classes + 'item-stable';
+			default : return classes + 'item-dark';
 			break;
 		}
 	};
