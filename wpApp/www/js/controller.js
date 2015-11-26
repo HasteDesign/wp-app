@@ -1,5 +1,5 @@
 wpApp.controller('DashCtrl', function($scope, $http) {
-	$http.get('https://saopaulo.wordcamp.org/2014/wp-json/posts?type=wcb_session&filter[posts_per_page]=-1/')
+	$http.get('https://saopaulo.wordcamp.org/2015/wp-json/posts?type=wcb_session&filter[posts_per_page]=-1/')
 	.success( function(data) {
 		$scope.title = 'Palestras';
 		$scope.posts = data;
@@ -28,7 +28,7 @@ wpApp.controller('DashCtrl', function($scope, $http) {
 		var breakClasses = 'item-dark';
 		var procedureClasses = 'item-dark';
 
-		switch(post.title) {
+		switch( post.title ) {
 			case 'Credenciamento' : return classes + procedureClasses;
 			break;
 			case 'Abertura' : return classes + procedureClasses;
@@ -89,8 +89,8 @@ wpApp.controller('DashCtrl', function($scope, $http) {
 				cordova.plugins.notification.local.schedule({
 					id: post.ID,
 					title: post.title,
-					text: "Irá acontecer agora a palestra: " + post.title + " - com " + post.author.name,
-					at: new Date( "July 04, 2015 00:28:00" )
+					text: post.title + " acontece agora. - com " + post.author.name,
+					at: post.date
 				});
 				return;
 			}
@@ -110,9 +110,7 @@ wpApp.filter('formatHour', function() {
 			if( meta !== undefined ) {
 				var date = new Date( meta * 1000 );
 				var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-				//return date.toLocaleDateString('pt-BR', options);
 				return date.getUTCHours() + 'h' + date.getUTCMinutes();
-				//return date.toLocaleTimeString('pt-BR', { hour12: false });
 			}
 		}
 });
@@ -123,8 +121,6 @@ wpApp.filter('formatDate', function() {
 				var date = new Date( meta * 1000 );
 				var options = { year: 'numeric', month: 'numeric', day: 'numeric' };
 				return date.toLocaleDateString('pt-BR', options);
-				//return date.getUTCHours() + 'h' + date.getUTCMinutes();
-				//return date.toLocaleTimeString('pt-BR', { hour12: false });
 			}
 		}
 });
