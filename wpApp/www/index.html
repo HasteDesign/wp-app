@@ -50,9 +50,16 @@
 			</div>
 			<ion-content class="has-subheader schedule-content">
 				<div class="list card " ng-repeat="post in posts | orderBy:&apos;post_meta[0].value&apos;">
-					<div class="item item-button-right item-text-wrap" ng-click="togglePost(post)" ng-class="sessionClass(post)">
+					<div class="item item-button-right item-text-wrap item-icon-left" ng-click="togglePost(post)" ng-class="sessionClass(post)">
 
-						<h2>{{post.title}}</h2>
+							<i class="icon ion-settings stable" ng-if="showTrack(post, 'tipo') == 'workshop' "></i>
+							<i class="icon ion-speakerphone stable" ng-if="showTrack(post, 'tipo') == 'palestra' "></i>
+							<i class="icon ion-flash stable" ng-if="showTrack(post, 'tipo') == 'lightning-talk' "></i>
+							<i ng-if="isRegularSession(post) == false" class="icon ion-clock"></i>
+						<h2>
+							{{post.title}}
+						</h2>
+						<p ng-if="isRegularSession(post) == false">{{post.post_meta[0][&quot;value&quot;] | formatHour}}</p>
 
 						<button class="button button-clear button-small" ng-if="isRegularSession(post)">
 							<i class="icon" ng-class="isPostShown(post) ? &apos;ion-chevron-up&apos; : &apos;ion-chevron-down&apos;"></i>
@@ -66,7 +73,7 @@
 					</div>
 
 					<div class="item item-accordion item-content" ng-show="isPostShown(post)">
-						<p><i class="icon ion-location"></i> {{showTrack(post, &apos;local&apos;)}} <i class="icon ion-pound padding-left"></i> {{showTrack(post, &apos;trilha&apos;)}}</p>
+						<p><i class="icon ion-location"></i> {{showTrack(post, "local")}} <i class="icon ion-pound padding-left"></i> {{showTrack(post, &apos;trilha&apos;)}}</p>
 					</div>
 
 					<div class="item item-accordion item-text-wrap item-content" ng-show="isPostShown(post)">

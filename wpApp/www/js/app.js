@@ -17,3 +17,7 @@ wpApp.run(function($ionicPlatform) {
     }
   });
 })
+
+.config(function($ionicConfigProvider) {
+    $ionicConfigProvider.tabs.position('bottom');
+})
