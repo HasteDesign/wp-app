@@ -25,10 +25,10 @@ wpApp.controller('DashCtrl', function($scope, $http) {
 		active ? classes = 'active ' : null ;
 		classes += $scope.trackClasses(post) + ' ';
 
-		var breakClasses = 'item-dark';
-		var procedureClasses = 'item-dark';
+		var breakClasses = 'item-stable';
+		var procedureClasses = 'item-stable';
 
-		switch( post.title ) {
+		switch(post.title) {
 			case 'Credenciamento' : return classes + procedureClasses;
 			break;
 			case 'Abertura' : return classes + procedureClasses;
@@ -41,7 +41,7 @@ wpApp.controller('DashCtrl', function($scope, $http) {
 			break;
 			case 'WordCana' : return classes + breakClasses;
 			break;
-			default : return classes + 'item-dark';
+			default : return classes + 'item-light';
 			break;
 		}
 	};
@@ -57,10 +57,13 @@ wpApp.controller('DashCtrl', function($scope, $http) {
 	$scope.showTrack = function(post, returnValue) {
 		var local = '';
 		var trilha= '';
+		var tipo = '';
 
 		for( var i = 0; i < post.terms.wcb_track.length; i++  ) {
 			if( post.terms.wcb_track[i].slug == 'auditorio' || post.terms.wcb_track[i].slug == 'mini-auditorio') {
 				local = post.terms.wcb_track[i].name;
+			} else if ( post.terms.wcb_track[i].slug == 'lightning-talk' || post.terms.wcb_track[i].slug == 'palestra' || post.terms.wcb_track[i].slug == 'workshop' ) {
+				tipo = post.terms.wcb_track[i].slug;
 			} else {
 				trilha = post.terms.wcb_track[i].name;
 			}
@@ -68,8 +71,8 @@ wpApp.controller('DashCtrl', function($scope, $http) {
 
 		if( returnValue == 'local' ) { return local; };
 		if( returnValue == 'trilha' ) { return trilha; };
+		if( returnValue == 'tipo' ) { return tipo; };
 	}
-
 	$scope.trackClasses = function(post) {
 		var classes = '';
 
@@ -89,13 +92,18 @@ wpApp.controller('DashCtrl', function($scope, $http) {
 				cordova.plugins.notification.local.schedule({
 					id: post.ID,
 					title: post.title,
-					text: post.title + " acontece agora. - com " + post.author.name,
-					at: post.date
+					text: "Irá acontecer agora a palestra: " + post.title + " - com " + post.author.name,
+					at: new Date( "July 04, 2015 00:28:00" )
 				});
 				return;
 			}
 		});
 	}
+
+	$scope.showTip = true;
+	$scope.hideTip = function() {
+        $scope.showTip = false;
+    };
 });
 
 wpApp.filter('htmlToPlaintext', function() {
@@ -110,7 +118,9 @@ wpApp.filter('formatHour', function() {
 			if( meta !== undefined ) {
 				var date = new Date( meta * 1000 );
 				var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+				//return date.toLocaleDateString('pt-BR', options);
 				return date.getUTCHours() + 'h' + date.getUTCMinutes();
+				//return date.toLocaleTimeString('pt-BR', { hour12: false });
 			}
 		}
 });
@@ -121,6 +131,8 @@ wpApp.filter('formatDate', function() {
 				var date = new Date( meta * 1000 );
 				var options = { year: 'numeric', month: 'numeric', day: 'numeric' };
 				return date.toLocaleDateString('pt-BR', options);
+				//return date.getUTCHours() + 'h' + date.getUTCMinutes();
+				//return date.toLocaleTimeString('pt-BR', { hour12: false });
 			}
 		}
 });
