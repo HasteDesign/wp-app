@@ -25,11 +25,11 @@
 </head>
 <body ng-app="starter" ng-controller="DashCtrl">
 	<div class="bar bar-header bar-dark">
-		<h1 class="title">WordCamp SP 2015</h1>
+		<i class="button icon ion-social-wordpress-outline"></i><h1 class="title"> WordCamp SP 2015</h1>
 	</div>
-	<ion-tabs class="tabs-positive tabs-icon-only">
+	<ion-tabs class="tabs-dark tabs-icon-only tabs-striped">
 		<ion-tab title="Bem vindo(a)!" href="#/tab/home" icon="ion-home">
-			<div class="bar bar-subheader bar-positive">
+			<div class="bar bar-subheader bar-assertive">
 				<p class="title">{{title}}</p>
 			</div>
 			<ion-content class="has-subheader">
@@ -38,17 +38,35 @@
 						<img src="img/wcsp_banner.jpg">
 					</div>
 					<div class="item item-text-wrap">
-						<p>Marque as palestras que você quer assistir.</p>
+						A 4º edição do WordCamp São Paulo chegou!
+						Marque as apresentações que você quer ver,
+						compartilhe com a hashtag <strong>#WordCampSP</strong>,
+						e aproveite!
+					</div>
+					<div class="item item-divider">
+						Informações
+					</div>
+					<a class="item item-icon-right item-text-wrap"href="https://www.google.com.br/maps/place/PUC-SP+Campus+Consola%C3%A7%C3%A3o+%2F+Marqu%C3%AAs+de+Paranagu%C3%A1+%2F+Funda%C3%A7%C3%A3o+S%C3%A3o+Paulo/@-23.5493191,-46.6523347,17z/data=!3m1!4b1!4m2!3m1!1s0x94ce584a1851911f:0x3370a89a5cc8887c">
+						<h2>PUC Consolação </h2>
+						<p>Rua Marquês de Paranaguá, 111. <br>São Paulo - SP</p>
+						<i class="assertive icon ion-location"></i>
+					</a>
+					<div >
 					</div>
 				</div>
 			</ion-content>
 		</ion-tab>
 
 		<ion-tab title="Programação" icon="ion-grid" href="#/tab/schedule" class="schedule">
-			<div class="bar bar-subheader bar-positive">
+			<div class="bar bar-subheader bar-assertive">
 				<p class="title">{{title}}</p>
 			</div>
 			<ion-content class="has-subheader schedule-content">
+				<div class="list">
+					<div class="item item-text-wrap item-icon-left item-balanced" ng-show="showTip" ng-click="hideTip()">
+						<i class="icon ion-ios-checkmark "></i>Marque as palestras que você deseja assistir, nós avisamos quando estiver chegando a hora!
+					</div> 
+				</div>
 				<div class="list card " ng-repeat="post in posts | orderBy:&apos;post_meta[0].value&apos;">
 					<div class="item item-button-right item-text-wrap item-icon-left" ng-click="togglePost(post)" ng-class="sessionClass(post)">
 
@@ -59,7 +77,7 @@
 						<h2>
 							{{post.title}}
 						</h2>
-						<p ng-if="isRegularSession(post) == false">{{post.post_meta[0][&quot;value&quot;] | formatHour}}</p>
+						<p ng-if="isRegularSession(post) == false">{{post.post_meta[0]['value'] | formatHour}}</p>
 
 						<button class="button button-clear button-small" ng-if="isRegularSession(post)">
 							<i class="icon" ng-class="isPostShown(post) ? &apos;ion-chevron-up&apos; : &apos;ion-chevron-down&apos;"></i>
@@ -73,7 +91,7 @@
 					</div>
 
 					<div class="item item-accordion item-content" ng-show="isPostShown(post)">
-						<p><i class="icon ion-location"></i> {{showTrack(post, "local")}} <i class="icon ion-pound padding-left"></i> {{showTrack(post, &apos;trilha&apos;)}}</p>
+						<p><i class="icon ion-pound"></i>&nbsp;{{showTrack(post, 'trilha')}} <i class="icon ion-calendar padding-left"></i>&nbsp;{{post.post_meta[0]['value'] | formatDate}} </p>
 					</div>
 
 					<div class="item item-accordion item-text-wrap item-content" ng-show="isPostShown(post)">
@@ -84,7 +102,8 @@
 						<label class="checkbox checkbox-balanced">
 							<input type="checkbox" ng-click="scheduleSession(post)">
 						</label>
-						<p class="row"><i class="icon ion-clock"></i>&nbsp;{{post.post_meta[0][&quot;value&quot;] | formatHour}}<i class="icon ion-calendar padding-left"></i>&nbsp;{{post.post_meta[0][&quot;value&quot;] | formatDate}}
+						<p class="row">
+							<i class="icon ion-clock"></i>&nbsp;{{post.post_meta[0]['value'] | formatHour}} <i class="icon ion-location padding-left"></i>&nbsp;{{showTrack(post, "local")}}
 						</p>
 					</div>
 

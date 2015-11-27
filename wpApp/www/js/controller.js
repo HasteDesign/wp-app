@@ -62,7 +62,7 @@ wpApp.controller('DashCtrl', function($scope, $http) {
 		for( var i = 0; i < post.terms.wcb_track.length; i++  ) {
 			if( post.terms.wcb_track[i].slug == 'auditorio' || post.terms.wcb_track[i].slug == 'mini-auditorio') {
 				local = post.terms.wcb_track[i].name;
-			} else if ( post.terms.wcb_track[i].slug == 'lightning-talk' || 'palestra' || 'workshop' ) {
+			} else if ( post.terms.wcb_track[i].slug == 'lightning-talk' || post.terms.wcb_track[i].slug == 'palestra' || post.terms.wcb_track[i].slug == 'workshop' ) {
 				tipo = post.terms.wcb_track[i].slug;
 			} else {
 				trilha = post.terms.wcb_track[i].name;
@@ -99,6 +99,11 @@ wpApp.controller('DashCtrl', function($scope, $http) {
 			}
 		});
 	}
+
+	$scope.showTip = true;
+	$scope.hideTip = function() {
+        $scope.showTip = false;
+    };
 });
 
 wpApp.filter('htmlToPlaintext', function() {
