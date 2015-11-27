@@ -93,7 +93,7 @@ wpApp.controller('DashCtrl', function($scope, $http) {
 					id: post.ID,
 					title: post.title,
 					text: "Irá acontecer agora a palestra: " + post.title + " - com " + post.author.name,
-					at: new Date( "July 04, 2015 00:28:00" )
+					at: new Date( new Date( post.post_meta[0]["value"] * 1000 ).getTime() + new Date( post.post_meta[0]["value"] * 1000 ).getTimezoneOffset() * 60 * 1000 )
 				});
 				return;
 			}
@@ -118,9 +118,7 @@ wpApp.filter('formatHour', function() {
 			if( meta !== undefined ) {
 				var date = new Date( meta * 1000 );
 				var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-				//return date.toLocaleDateString('pt-BR', options);
 				return date.getUTCHours() + 'h' + date.getUTCMinutes();
-				//return date.toLocaleTimeString('pt-BR', { hour12: false });
 			}
 		}
 });
@@ -131,8 +129,6 @@ wpApp.filter('formatDate', function() {
 				var date = new Date( meta * 1000 );
 				var options = { year: 'numeric', month: 'numeric', day: 'numeric' };
 				return date.toLocaleDateString('pt-BR', options);
-				//return date.getUTCHours() + 'h' + date.getUTCMinutes();
-				//return date.toLocaleTimeString('pt-BR', { hour12: false });
 			}
 		}
 });
