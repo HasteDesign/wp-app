@@ -44,13 +44,3 @@ img {
 	background: $positive center fixed;
     background-size: cover;
 }
-
-.card, .list-inset, .item {
-    border-radius: 0;
-    background-color: rgba(#000, 0.3) !important;
-	color: #fff;
-
-	> * {
-		color: #fff;
-	}
-}

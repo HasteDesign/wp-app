@@ -59,7 +59,7 @@
 						</button>
 					</div>
 
-					<div class="item item-accordion item-avatar item-stable" ng-show="isPostShown(post)" ng-if="isRegularSession(post)">
+					<div class="item item-accordion item-avatar item-light" ng-show="isPostShown(post)" ng-if="isRegularSession(post)">
 						<img ng-src="{{post.author.avatar}}">
 						<h2>{{post.speaker.title}}</h2>
 						<p><a href="{{post.author.URL}}">{{post.author.URL}}</a></p>
@@ -73,7 +73,7 @@
 						<p>{{post.content | htmlToPlaintext}}</p>
 					</div>
 
-					<div class="item item-checkbox" ng-class="sessionClass(post)">
+					<div class="item item-checkbox" ng-class="sessionClass(post)" ng-if="isRegularSession(post)">
 						<label class="checkbox checkbox-balanced">
 							<input type="checkbox" ng-click="scheduleSession(post)">
 						</label>
